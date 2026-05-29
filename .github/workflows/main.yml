@@ -1,4 +1,4 @@
-
+```yaml id="0bw8gk"
 name: Deploy Application
 
 on:
@@ -23,7 +23,15 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
 
           script: |
+            if [ ! -d "realtime-chat-app" ]; then
+              git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME.git
+            fi
+
             cd realtime-chat-app
+
             git pull origin main
+
             docker compose down
+
             docker compose up -d --build
+```
